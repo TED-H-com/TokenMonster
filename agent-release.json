@@ -6,7 +6,7 @@
   "product": {
     "name": "Token Monster (AI-Sister)",
     "package": "@tokenmonster/companion",
-    "repository": "https://github.com/teddashh/TokenMonster",
+    "repository": "https://github.com/TED-H-com/TokenMonster",
     "runtime": "native Electron source application",
     "distributionLane": "source-development",
     "platforms": [

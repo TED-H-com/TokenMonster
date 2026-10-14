@@ -1,5 +1,5 @@
 {
-  "repo": "teddashh/TokenMonster",
+  "repo": "TED-H-com/TokenMonster",
   "slug": "TokenMonster",
   "name": "TokenMonster",
   "mark": "TM",
@@ -44,7 +44,7 @@
       }
     },
     "secondary": {
-      "href": "https://github.com/teddashh/TokenMonster",
+      "href": "https://github.com/TED-H-com/TokenMonster",
       "label": {
         "en": "View source",
         "zh": "查看原始碼"
@@ -469,14 +469,14 @@
       "zh": "兩者都是 GitHub Releases 上的公開測試版。Windows 安裝檔還沒有程式碼簽章。CLI 只支援 Node.js 24.15.0 與 npm 11.12.1 這組版本，也還沒上架 npm registry。"
     },
     "primary": {
-      "href": "https://github.com/teddashh/TokenMonster/releases/tag/v0.1.0-rc.22",
+      "href": "https://github.com/TED-H-com/TokenMonster/releases/tag/v0.1.0-rc.22",
       "label": {
         "en": "Download rc.22",
         "zh": "下載 rc.22"
       }
     },
     "secondary": {
-      "href": "https://github.com/teddashh/TokenMonster/blob/main/docs/RELEASE.md",
+      "href": "https://github.com/TED-H-com/TokenMonster/blob/main/docs/RELEASE.md",
       "label": {
         "en": "Release process",
         "zh": "發行流程"
@@ -638,28 +638,28 @@
   ],
   "links": [
     {
-      "href": "https://github.com/teddashh/TokenMonster/releases",
+      "href": "https://github.com/TED-H-com/TokenMonster/releases",
       "label": {
         "en": "Releases",
         "zh": "版本"
       }
     },
     {
-      "href": "https://github.com/teddashh/TokenMonster/blob/main/docs/DATA_INVENTORY.md",
+      "href": "https://github.com/TED-H-com/TokenMonster/blob/main/docs/DATA_INVENTORY.md",
       "label": {
         "en": "Data inventory",
         "zh": "資料清冊"
       }
     },
     {
-      "href": "https://github.com/teddashh/TokenMonster/blob/main/docs/THREAT_MODEL.md",
+      "href": "https://github.com/TED-H-com/TokenMonster/blob/main/docs/THREAT_MODEL.md",
       "label": {
         "en": "Threat model",
         "zh": "威脅模型"
       }
     },
     {
-      "href": "https://github.com/teddashh/TokenMonster/blob/main/README.en.md",
+      "href": "https://github.com/TED-H-com/TokenMonster/blob/main/README.en.md",
       "label": {
         "en": "English README",
         "zh": "English README"
@@ -673,7 +673,7 @@
       }
     },
     {
-      "href": "https://teddashh.github.io/AI-Sister/",
+      "href": "https://ted-h-com.github.io/AI-Sister/",
       "label": {
         "en": "Related: AI-Sister",
         "zh": "相關專案：AI-Sister"

@@ -4,10 +4,10 @@
 
 Tracks Claude Code, Codex, Gemini CLI, and Grok Build token usage on your own machine, and unlocks eleven companion characters from real usage milestones.
 
-**Project page:** https://teddashh.github.io/TokenMonster/
+**Project page:** https://ted-h-com.github.io/TokenMonster/
 
-[![CI](https://github.com/teddashh/TokenMonster/actions/workflows/ci.yml/badge.svg)](https://github.com/teddashh/TokenMonster/actions/workflows/ci.yml)
-[![Release](https://img.shields.io/github/v/release/teddashh/TokenMonster?include_prereleases&label=release)](https://github.com/teddashh/TokenMonster/releases)
+[![CI](https://github.com/TED-H-com/TokenMonster/actions/workflows/ci.yml/badge.svg)](https://github.com/TED-H-com/TokenMonster/actions/workflows/ci.yml)
+[![Release](https://img.shields.io/github/v/release/teddashh/TokenMonster?include_prereleases&label=release)](https://github.com/TED-H-com/TokenMonster/releases)
 [![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 
 **How many tokens did you burn today? Watch it together with your AI sisters.**
@@ -66,7 +66,7 @@ and model rankings are all generated from local data.
 
 ### Windows: desktop installer
 
-1. Download the latest `TokenMonsterSetup.exe` (currently v0.1.0-rc.22) from [Releases](https://github.com/teddashh/TokenMonster/releases) and double-click it.
+1. Download the latest `TokenMonsterSetup.exe` (currently v0.1.0-rc.22) from [Releases](https://github.com/TED-H-com/TokenMonster/releases) and double-click it.
 2. It is an unsigned public test build, so SmartScreen shows a warning: click "More info", then "Run anyway". A code-signed build follows once signing credentials exist.
 3. TokenMonster appears in the system tray after install and launches from the Start menu afterwards. Uninstall it from Settings → Apps → TokenMonster.
 4. Automatic update checks are off by default. When checked on 2026-10-01, the built-in update feed had no content yet (it returned 404), so get new versions from Releases.
@@ -75,7 +75,7 @@ and model rankings are all generated from local data.
 
 Requires exactly Node.js `24.15.0` and npm `11.12.1`. The package declares both in `engines`; other versions are unsupported.
 
-1. Download `tokenmonster-0.1.0-rc.22.tgz` from [Releases](https://github.com/teddashh/TokenMonster/releases) and check it against `TokenMonster-cli-SHA256SUMS.txt` from the same release.
+1. Download `tokenmonster-0.1.0-rc.22.tgz` from [Releases](https://github.com/TED-H-com/TokenMonster/releases) and check it against `TokenMonster-cli-SHA256SUMS.txt` from the same release.
 2. Install it into its own folder and launch it (on Windows, run the same commands in PowerShell):
 
    ```sh
@@ -96,7 +96,7 @@ TokenMonster is not on the npm registry yet.
 Same requirements: the root `package.json` pins Node.js 24.15.0 and npm 11.12.1 with `engine-strict`, so `npm ci` rejects other versions.
 
 ```sh
-git clone https://github.com/teddashh/TokenMonster.git
+git clone https://github.com/TED-H-com/TokenMonster.git
 cd TokenMonster
 npm ci
 npm run build
@@ -156,7 +156,7 @@ The Electron 43.7.7 desktop build (Windows only for now): a pet window you can d
 
 BYOK chat supports OpenAI only (model `gpt-5.6-luna`). The API key is encrypted with Electron `safeStorage`, or you can keep it in memory only; conversations live only in memory and clear when closed.
 
-The Windows installer `TokenMonsterSetup.exe` is packaged with Squirrel.Windows and available from [Releases](https://github.com/teddashh/TokenMonster/releases). It is an unsigned public test build; the embedded updater is rebuilt from source and byte-verified in the same CI run. macOS and Linux desktop builds and a code-signed installer are on the roadmap.
+The Windows installer `TokenMonsterSetup.exe` is packaged with Squirrel.Windows and available from [Releases](https://github.com/TED-H-com/TokenMonster/releases). It is an unsigned public test build; the embedded updater is rebuilt from source and byte-verified in the same CI run. macOS and Linux desktop builds and a code-signed installer are on the roadmap.
 
 ## Development
 
@@ -174,7 +174,7 @@ On a machine with no real usage, the dashboard shows an honest empty state and e
 
 Done:
 
-- Public CLI test build (v0.1.0-rc.22), installed from [Releases](https://github.com/teddashh/TokenMonster/releases); the rc.22 release smoke test passed on Linux, macOS, and Windows.
+- Public CLI test build (v0.1.0-rc.22), installed from [Releases](https://github.com/TED-H-com/TokenMonster/releases); the rc.22 release smoke test passed on Linux, macOS, and Windows.
 - Windows desktop installer: an unsigned public test build that CI installs, launches, and uninstalls.
 
 Not yet:
@@ -205,7 +205,7 @@ Measured on 2026-10-07, the complete dependency audit in Verify reports no findi
 
 See [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md) for the full list and license terms.
 
-Related: [AI-Sister](https://teddashh.github.io/AI-Sister/) is a later local-first desktop companion that reuses TokenMonster's pet-window approach and the same character media pack.
+Related: [AI-Sister](https://ted-h-com.github.io/AI-Sister/) is a later local-first desktop companion that reuses TokenMonster's pet-window approach and the same character media pack.
 
 ## License
 

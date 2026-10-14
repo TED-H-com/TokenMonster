@@ -4,10 +4,10 @@
 
 在你自己的電腦上追蹤 Claude Code、Codex、Gemini CLI 與 Grok Build 的 token 用量，11 位陪伴角色隨真實的使用里程碑解鎖。
 
-**專案介紹頁：** https://teddashh.github.io/TokenMonster/?lang=zh-TW
+**專案介紹頁：** https://ted-h-com.github.io/TokenMonster/?lang=zh-TW
 
-[![CI](https://github.com/teddashh/TokenMonster/actions/workflows/ci.yml/badge.svg)](https://github.com/teddashh/TokenMonster/actions/workflows/ci.yml)
-[![Release](https://img.shields.io/github/v/release/teddashh/TokenMonster?include_prereleases&label=release)](https://github.com/teddashh/TokenMonster/releases)
+[![CI](https://github.com/TED-H-com/TokenMonster/actions/workflows/ci.yml/badge.svg)](https://github.com/TED-H-com/TokenMonster/actions/workflows/ci.yml)
+[![Release](https://img.shields.io/github/v/release/teddashh/TokenMonster?include_prereleases&label=release)](https://github.com/TED-H-com/TokenMonster/releases)
 [![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 
 **你每天用掉多少 token？讓 AI 姊妹們陪你一起看。**
@@ -65,7 +65,7 @@ TokenMonster 透過鎖定版本的 [TokenTracker](https://github.com/mm7894215/T
 
 ### Windows：桌面版安裝檔
 
-1. 從 [Releases](https://github.com/teddashh/TokenMonster/releases) 下載最新的 `TokenMonsterSetup.exe`（目前是 v0.1.0-rc.22），雙擊安裝。
+1. 從 [Releases](https://github.com/TED-H-com/TokenMonster/releases) 下載最新的 `TokenMonsterSetup.exe`（目前是 v0.1.0-rc.22），雙擊安裝。
 2. 目前是未簽章的公開測試版，SmartScreen 會跳出警告，請按「其他資訊」，再按「仍要執行」。取得程式碼簽章憑證後會改發簽章版。
 3. 安裝完成後 TokenMonster 會出現在系統匣，之後從「開始」功能表啟動；要移除，請到「設定 → 應用程式 → TokenMonster」。
 4. 自動檢查更新預設關閉。2026-10-01 查核時，程式內建的更新來源還沒有內容（回應 404），新版本請到 Releases 手動下載。
@@ -74,7 +74,7 @@ TokenMonster 透過鎖定版本的 [TokenTracker](https://github.com/mm7894215/T
 
 需求：Node.js `24.15.0` 與 npm `11.12.1`，必須是這組版本。套件用 `engines` 宣告這兩個版本，其他版本不在支援範圍內。
 
-1. 從 [Releases](https://github.com/teddashh/TokenMonster/releases) 下載 `tokenmonster-0.1.0-rc.22.tgz`，並用同一個 release 的 `TokenMonster-cli-SHA256SUMS.txt` 核對。
+1. 從 [Releases](https://github.com/TED-H-com/TokenMonster/releases) 下載 `tokenmonster-0.1.0-rc.22.tgz`，並用同一個 release 的 `TokenMonster-cli-SHA256SUMS.txt` 核對。
 2. 安裝到獨立的資料夾並啟動（Windows 在 PowerShell 執行同樣的指令）：
 
    ```sh
@@ -95,7 +95,7 @@ TokenMonster 還沒有上架 npm registry。
 需求同上：根目錄的 `package.json` 以 `engine-strict` 鎖定 Node.js 24.15.0 與 npm 11.12.1，`npm ci` 會拒絕其他版本。
 
 ```sh
-git clone https://github.com/teddashh/TokenMonster.git
+git clone https://github.com/TED-H-com/TokenMonster.git
 cd TokenMonster
 npm ci
 npm run build
@@ -155,7 +155,7 @@ Electron 43.7.7 桌面版（目前只有 Windows）：一個可以拖曳、置�
 
 BYOK 聊天目前只支援 OpenAI（模型 `gpt-5.6-luna`）。API key 用 Electron `safeStorage` 加密保存，也可以選擇只放在記憶體；對話內容只存在記憶體，關閉就清除。
 
-Windows 安裝檔 `TokenMonsterSetup.exe` 由 Squirrel.Windows 打包，可以從 [Releases](https://github.com/teddashh/TokenMonster/releases) 下載。它是未簽章的公開測試版；內嵌的更新元件在同一個 CI run 裡從原始碼重建並逐位元比對。macOS／Linux 桌面版與簽章版安裝檔還在路線圖上。
+Windows 安裝檔 `TokenMonsterSetup.exe` 由 Squirrel.Windows 打包，可以從 [Releases](https://github.com/TED-H-com/TokenMonster/releases) 下載。它是未簽章的公開測試版；內嵌的更新元件在同一個 CI run 裡從原始碼重建並逐位元比對。macOS／Linux 桌面版與簽章版安裝檔還在路線圖上。
 
 ## 開發
 
@@ -173,7 +173,7 @@ npm test
 
 已完成：
 
-- CLI 公開測試版（v0.1.0-rc.22）：從 [Releases](https://github.com/teddashh/TokenMonster/releases) 安裝；rc.22 的發行冒煙測試在 Linux、macOS、Windows 都通過。
+- CLI 公開測試版（v0.1.0-rc.22）：從 [Releases](https://github.com/TED-H-com/TokenMonster/releases) 安裝；rc.22 的發行冒煙測試在 Linux、macOS、Windows 都通過。
 - Windows 桌面安裝檔：未簽章公開測試版，CI 會實際安裝、啟動再移除。
 
 尚未完成：
@@ -204,7 +204,7 @@ npm test
 
 完整清單與授權條款見 [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md)。
 
-相關專案：[AI-Sister](https://teddashh.github.io/AI-Sister/) 是後來的本機桌面陪伴程式，沿用了 TokenMonster 的寵物視窗做法與同一套角色素材包。
+相關專案：[AI-Sister](https://ted-h-com.github.io/AI-Sister/) 是後來的本機桌面陪伴程式，沿用了 TokenMonster 的寵物視窗做法與同一套角色素材包。
 
 ## License
 

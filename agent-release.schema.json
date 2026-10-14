@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://github.com/teddashh/TokenMonster/blob/main/agent-release.schema.json",
+  "$id": "https://github.com/TED-H-com/TokenMonster/blob/main/agent-release.schema.json",
   "title": "TokenMonster Agent-Ready Source Release",
   "type": "object",
   "additionalProperties": false,
@@ -53,7 +53,7 @@
           "const": "@tokenmonster/companion"
         },
         "repository": {
-          "const": "https://github.com/teddashh/TokenMonster"
+          "const": "https://github.com/TED-H-com/TokenMonster"
         },
         "runtime": {
           "$ref": "#/$defs/nonEmptyString"
