@@ -90,6 +90,29 @@ TokenMonster 透過鎖定版本的 [TokenTracker](https://github.com/mm7894215/T
 
 TokenMonster 還沒有上架 npm registry。
 
+### CLI 參數
+
+- `--no-open`：啟動但不自動開啟瀏覽器（會將本機網址印在終端機）。
+- `--no-character-downloads`：本次執行不提供角色素材包的下載選項。
+- `--version`：顯示 TokenMonster 版本並結束。
+- `--help`：顯示 CLI 說明訊息並結束。
+
+### 程式化 API
+
+你也可以在程式中呼叫 TokenMonster：
+
+```typescript
+import { runTokenMonster } from "tokenmonster";
+
+// 以預設選項啟動 TokenMonster
+runTokenMonster().then((code) => process.exit(code));
+
+// 啟動但不開啟瀏覽器
+runTokenMonster({
+  argv: ["--no-open"]
+});
+```
+
 ### 從原始碼執行
 
 需求同上：根目錄的 `package.json` 以 `engine-strict` 鎖定 Node.js 24.15.0 與 npm 11.12.1，`npm ci` 會拒絕其他版本。
