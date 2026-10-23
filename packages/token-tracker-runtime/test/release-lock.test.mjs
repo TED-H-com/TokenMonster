@@ -107,7 +107,7 @@ describe("public CLI sidecar shrinkwrap", () => {
         "@mongodb-js/zstd": "2.0.1",
         "@tokenmonster/token-tracker-runtime": "0.1.0",
         "tokentracker-cli": sidecarPin,
-        zod: "4.4.3",
+        zod: "4.6.7",
       },
       bundleDependencies: [
         "@mongodb-js/zstd",
@@ -133,7 +133,7 @@ describe("public CLI sidecar shrinkwrap", () => {
           version: "0.1.0",
           dependencies: { "tokentracker-cli": sidecarPin },
         },
-        { name: "zod", version: "4.4.3" },
+        { name: "zod", version: "4.6.7" },
       ],
     });
 

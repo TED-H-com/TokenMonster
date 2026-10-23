@@ -20,6 +20,6 @@
   },
   "dependencies": {
     "@tokenmonster/monster-engine": "0.1.0",
-    "zod": "4.4.3"
+    "zod": "4.6.7"
   }
 }
