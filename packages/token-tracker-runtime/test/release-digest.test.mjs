@@ -371,7 +371,7 @@ async function fixture(entryName = "index.js", options = {}) {
   );
   const archive = spawnSync(
     "tar",
-    ["--format=pax", "-czf", join(directory, tarballName), "-C", directory, "package"],
+    ["--format=ustar", "-czf", join(directory, tarballName), "-C", directory, "package"],
     { encoding: "utf8" },
   );
   if (archive.status !== 0) {
