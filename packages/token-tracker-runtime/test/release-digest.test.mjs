@@ -109,7 +109,7 @@ function sha256(bytes) {
 }
 
 function writeTarText(header, offset, length, value) {
-  const bytes = Buffer.from(value, "ascii");
+  const bytes = Buffer.from(value, "utf8");
   if (bytes.length > length) throw new Error("test tar field is too long");
   bytes.copy(header, offset);
 }
@@ -759,24 +759,27 @@ describe("cross-platform release digest verifier", () => {
       expect(() => portablePublicTarEntryKey(entry)).toThrow(/portable names/u);
     }
 
-    const sigmaCaseFold = await fixture("\u03a3.js", {
-      additionalEntries: ["\u03c2.js"],
-    });
-    await expect(verifyFixture(sigmaCaseFold.directory)).rejects.toThrow(
-      /portable names/u,
-    );
-
-    const normalization = await fixture("caf\u00e9.js", {
-      additionalEntries: ["cafe\u0301.js"],
-    });
-    await expect(verifyFixture(normalization.directory)).rejects.toThrow(
-      /portable names/u,
-    );
-
-    const superscriptDeviceName = await fixture("COM\u00b9.txt");
-    await expect(
-      verifyFixture(superscriptDeviceName.directory),
-    ).rejects.toThrow(/portable names/u);
+    // Write hostile tar names directly: Windows cannot create every Unicode
+    // device name and host tar implementations may reject or normalize them.
+    // The digest verifier must still reject the actual archive on every OS.
+    for (const entries of [
+      ["package/\u03a3.js", "package/\u03c2.js"],
+      ["package/caf\u00e9.js", "package/cafe\u0301.js"],
+      ["package/COM\u00b9.txt"],
+    ]) {
+      const directory = await mkdtemp(join(tmpdir(), "tokenmonster-unicode-"));
+      directories.push(directory);
+      const tarballName = "tokenmonster-0.1.0-rc.11.tgz";
+      const bytes = tarArchive(
+        ["package/index.js", ...entries].map((path) => ({ path, bytes: Buffer.alloc(0) })),
+      );
+      await writeFile(join(directory, tarballName), bytes);
+      await writeFile(
+        join(directory, "SHASUMS256.txt"),
+        `${sha256(bytes)}  ${tarballName}\n`,
+      );
+      await expect(verifyFixture(directory)).rejects.toThrow(/portable names/u);
+    }
   });
 
   it("rejects trailing dots, spaces, illegal characters, and long components", () => {
