@@ -532,6 +532,24 @@ describe("28-day personal profile footprint", () => {
     ).rejects.toMatchObject({ code: "invalid-range" });
     expect(fetch).not.toHaveBeenCalled();
   });
+
+  it("rejects huge numbers and empty arrays for sources/models", async () => {
+    const date = RANGE.toUtcDate;
+    const hugeSource = source("codex", [
+      model("one", { input: Number.MAX_SAFE_INTEGER + 1 })
+    ]);
+
+    const adapter = createTokenTrackerAdapter({
+      fetch: fixtureFetch(
+        dailyBody([dailyRow(date, [hugeSource])]),
+        new Map([[date, breakdownBody(date, [hugeSource])]])
+      )
+    });
+
+    await expect(
+      adapter.getDailyContentBlindFootprint({ ...RANGE, characterId: "chatgpt" })
+    ).rejects.toMatchObject({ code: "incompatible-schema" });
+  });
 });
 
 describe("personal route and accounting fail-closed contract", () => {
