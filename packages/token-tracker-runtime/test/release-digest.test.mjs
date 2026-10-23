@@ -108,8 +108,8 @@ function sha256(bytes) {
   return createHash("sha256").update(bytes).digest("hex");
 }
 
-function writeTarText(header, offset, length, value) {
-  const bytes = Buffer.from(value, "ascii");
+function writeTarText(header, offset, length, value, encoding = "ascii") {
+  const bytes = Buffer.from(value, encoding);
   if (bytes.length > length) throw new Error("test tar field is too long");
   bytes.copy(header, offset);
 }
@@ -125,7 +125,7 @@ function writeTarOctal(header, offset, length, value) {
 
 function tarEntry(path, bytes) {
   const header = Buffer.alloc(512);
-  writeTarText(header, 0, 100, path);
+  writeTarText(header, 0, 100, path, "utf8");
   writeTarOctal(header, 100, 8, 0o755);
   writeTarOctal(header, 108, 8, 0);
   writeTarOctal(header, 116, 8, 0);
