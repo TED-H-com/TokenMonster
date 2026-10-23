@@ -372,7 +372,7 @@ async function fixture(entryName = "index.js", options = {}) {
   const archive = spawnSync(
     "tar",
     ["-czf", join(directory, tarballName), "-C", directory, "package"],
-    { encoding: "utf8", env: { ...process.env, LANG: "C.UTF-8" } },
+    { encoding: "utf8", env: { ...process.env, LC_ALL: "en_US.UTF-8" } },
   );
   if (archive.status !== 0) {
     throw new Error(`test tar creation failed: ${archive.stderr}`);
