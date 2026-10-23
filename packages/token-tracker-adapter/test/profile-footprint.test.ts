@@ -533,7 +533,22 @@ describe("28-day personal profile footprint", () => {
     expect(fetch).not.toHaveBeenCalled();
   });
 
-  it("rejects huge numbers and empty arrays for sources/models", async () => {
+  it("rejects huge numbers and handles empty arrays for sources/models", async () => {
+    const emptyModelsSource = source("codex", []);
+    const adapterEmpty = createTokenTrackerAdapter({
+      fetch: fixtureFetch(
+        dailyBody([dailyRow(RANGE.toUtcDate, [emptyModelsSource])]),
+        new Map([[RANGE.toUtcDate, breakdownBody(RANGE.toUtcDate, [emptyModelsSource])]])
+      )
+    });
+
+    // empty model lists are valid schemas; they project to zero-token totals
+    // unless another valid source with non-zero usage exists for the day
+    await expect(
+      adapterEmpty.getDailyContentBlindFootprint({ ...RANGE, characterId: "chatgpt" })
+    ).resolves.toMatchObject({ schemaVersion: "1" });
+
+
     const date = RANGE.toUtcDate;
     const hugeSource = source("codex", [
       model("one", { input: Number.MAX_SAFE_INTEGER + 1 })
