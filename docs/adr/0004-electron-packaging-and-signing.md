@@ -21,7 +21,7 @@ Packager and installer APIs; a framework-owned build lifecycle is unnecessary.
 
 ### Build and package layout
 
-- Keep Electron exactly at `43.7.7`, Vite at `8.1.4`, and the reviewed stable
+- Keep Electron exactly at `43.8.3`, Vite at `8.1.6`, and the reviewed stable
   direct packaging tools exact: `@electron/packager 20.3.0`,
   `@electron/fuses 1.8.0`, `@electron/osx-sign 1.3.3`,
   `@electron/windows-sign 1.2.2`, `cross-zip 4.0.1`,
@@ -232,6 +232,27 @@ mount and inspect the final DMG. DMG verification currently fails closed.
   sandbox is approved.
 
 ## Amendments
+
+### 2026-10-23: Electron 43.8.3 and bounded Undici overrides
+
+Electron moves from `43.7.7` to `43.8.3` for
+[GHSA-jr5w-w6x2-84p9](https://github.com/electron/electron/security/advisories/GHSA-jr5w-w6x2-84p9).
+The npm package integrity and the official Linux x64, Windows x64, macOS x64
+and macOS arm64 archive checksums were verified. Every runtime contains one
+version 1 wire of nine fuses, with raw defaults `101100011`; the existing
+fuse policy produces `010011101` on all four. Installer script bytes are
+unchanged. The exact package-file digests and snapshot version guard move
+together; the snapshot byte-equality and artifact verification remain required.
+
+The TokenTracker pin remains `0.80.0`; only its in-range Undici dependency
+moves from `8.10.2` to `8.12.3`. The exact closure regression expectations
+retain all other package identities. Miniflare's exact Undici `7.29.1` pin
+requires the scoped `7.30.1` override alongside the existing sharp override.
+The verifier accepts only that exact override object and the corresponding
+exact npm-tree diagnostic, while preserving unrelated dependency rejection.
+These patches address the content-encoding crash, EventSource bounds and SRI
+algorithm parsing. They do not replace Node's built-in fetch or relax the
+managed sidecar's network-deny policy.
 
 ### 2026-10-01: Electron 43.1.1 to 43.7.7
 

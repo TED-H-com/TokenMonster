@@ -7,7 +7,10 @@
     "declarationMap": false,
     "sourceMap": false,
     "noEmit": false,
-    "tsBuildInfoFile": "dist/.tsbuildinfo"
+    "tsBuildInfoFile": "dist/.tsbuildinfo",
+    "types": [
+      "node"
+    ]
   },
   "include": [
     "src/**/*.ts"

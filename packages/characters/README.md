@@ -205,7 +205,7 @@ claim, and must remain separated from credentials and hidden content.
 ## Dependencies and commands
 
 Runtime dependencies are pinned exactly to the workspace monster engine at
-`0.1.0`, `zod@4.4.3`, and the streaming ZIP parser `yauzl@3.4.0`. The latter's
+`0.1.0`, `zod@4.6.7`, and the streaming ZIP parser `yauzl@3.4.0`. The latter's
 production closure is only `pend@1.2.0`; both are JavaScript-only and have no
 install scripts. TypeScript, Vitest, and the dev-only ZIP fixture writer are
 supplied through the workspace development install.

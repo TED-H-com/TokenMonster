@@ -64,7 +64,7 @@ describe("public CLI sidecar shrinkwrap", () => {
       expect.arrayContaining([
         "tokentracker-cli@0.80.0",
         "@mongodb-js/zstd@2.0.1",
-        "undici@8.10.2",
+        "undici@8.12.3",
         "yauzl@3.4.0",
         "prebuild-install@7.1.3",
       ]),
@@ -85,7 +85,7 @@ describe("public CLI sidecar shrinkwrap", () => {
     expect(pins).toMatchObject({
       "@mongodb-js/zstd": "2.0.1",
       "tokentracker-cli": "0.80.0",
-      undici: "8.10.2",
+      undici: "8.12.3",
       yauzl: "3.4.0",
     });
     expect(
@@ -107,7 +107,7 @@ describe("public CLI sidecar shrinkwrap", () => {
         "@mongodb-js/zstd": "2.0.1",
         "@tokenmonster/token-tracker-runtime": "0.1.0",
         "tokentracker-cli": sidecarPin,
-        zod: "4.4.3",
+        zod: "4.6.7",
       },
       bundleDependencies: [
         "@mongodb-js/zstd",
@@ -133,7 +133,7 @@ describe("public CLI sidecar shrinkwrap", () => {
           version: "0.1.0",
           dependencies: { "tokentracker-cli": sidecarPin },
         },
-        { name: "zod", version: "4.4.3" },
+        { name: "zod", version: "4.6.7" },
       ],
     });
 

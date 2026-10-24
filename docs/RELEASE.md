@@ -94,7 +94,7 @@ no extra distributable executable, installer, GitHub Release asset, npm publicat
 channel, shortcut, or OS registration. The files travel with the repository
 source archive and are excluded from the CLI tarball and desktop package.
 When Electron's native executable is absent, the shared lifecycle separately
-verifies the exact locked Electron 43.7.7 installer package files and checksum
+verifies the exact locked Electron 43.8.3 installer package files and checksum
 authority before obtaining the official native archive; it never delegates
 that step to an agent-generated command or unreviewed mirror.
 
