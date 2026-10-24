@@ -13,14 +13,14 @@ import { rootDirectory } from "./contract.mjs";
 
 const ELECTRON_PATH_CAP = 1024;
 const ELECTRON_PACKAGE_FILE_CAP = 64 * 1024;
-const EXPECTED_ELECTRON_VERSION = "43.7.7";
+const EXPECTED_ELECTRON_VERSION = "43.8.3";
 const REVIEWED_ELECTRON_PACKAGE_FILES = Object.freeze({
   "package.json":
-    "5fe95208a534298829bf8dcb6d0d45f5b93624b01e25ab8b5a8cc0a1df39812d",
+    "30c67923723f538809a7b896315ff8b3b07704a65ec3488d69e23ee4f927bca5",
   "install.js":
     "3b9e0c3c9070edbdb732dc05ed23c6f1c6b7a404bd623033a2f0b71052534e93",
   "checksums.json":
-    "3239850744ff96b0642a2160733cc331ae12496ed1c0c1950292b2e555994160",
+    "8156d93f919bb7dfd7894a08cf1f8a2bd506d031fd849a785803e06909e84756",
 });
 
 function regularFile(path) {

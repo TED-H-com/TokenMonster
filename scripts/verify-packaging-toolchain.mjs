@@ -41,11 +41,12 @@ const permittedOptionalExtraneousProblems = Object.freeze([
   /^extraneous: @emnapi\/runtime@1\.11\.3 .+[\\/]node_modules[\\/]@img[\\/]sharp-wasm32[\\/]node_modules[\\/]@emnapi[\\/]runtime$/u,
   /^extraneous: @img\/sharp-wasm32@0\.35\.5 .+[\\/]node_modules[\\/]@img[\\/]sharp-wasm32$/u,
   /^extraneous: tslib@2\.8\.1 .+[\\/]node_modules[\\/]tslib$/u,
-  // npm ls does not model root overrides, so the reviewed miniflare sharp
-  // security override reports the forced sharp version as invalid even though
-  // npm ci resolves and installs it.
+  // npm ls does not model root overrides, so the reviewed miniflare overrides
+  // report their forced versions as invalid even though
+  // npm ci resolves and installs them.
   /^invalid: sharp@0\.35\.5 .+[\\/]node_modules[\\/]sharp$/u,
 ]);
+const permittedUndiciProblem = `invalid: undici@7.30.1 ${join(rootDirectory, "node_modules", "undici")}`;
 const expectedOptionalExtraneousLockEntries = Object.freeze({
   "node_modules/@emnapi/runtime": "1.11.1",
   "node_modules/@img/sharp-wasm32": "0.35.5",
@@ -115,8 +116,8 @@ async function runCleanNpmList() {
     });
     child.once("error", reject);
     child.once("close", (code, signal) => {
-      // npm ls exits 1 when it reports the override-induced invalid sharp
-      // edge; that exact bounded problem set is validated below.
+      // npm ls exits 1 when it reports the override-induced invalid sharp/undici
+      // edges; that exact bounded problem set is validated below.
       if (signal !== null || (code !== 0 && code !== 1)) {
         reject(
           new Error(
@@ -139,9 +140,10 @@ async function runCleanNpmList() {
           problems.some(
             (problem) =>
               typeof problem !== "string" ||
-              !permittedOptionalExtraneousProblems.some((pattern) =>
-                pattern.test(problem),
-              ),
+              (problem !== permittedUndiciProblem &&
+                !permittedOptionalExtraneousProblems.some((pattern) =>
+                  pattern.test(problem),
+                )),
           )
         ) {
           throw new Error(
@@ -185,15 +187,15 @@ const companionManifest = await readJson(
 const packageLock = await readJson(join(rootDirectory, "package-lock.json"));
 
 const permittedRootOverrides = JSON.stringify({
-  miniflare: { sharp: "0.35.5" },
+  miniflare: { sharp: "0.35.5", undici: "7.30.1" },
 });
 if (
   Object.hasOwn(rootManifest, "overrides") &&
   JSON.stringify(rootManifest.overrides) !== permittedRootOverrides
 ) {
   throw new Error(
-    "Root overrides must remain exactly the reviewed miniflare sharp " +
-      "security override until miniflare pins a patched sharp.",
+    "Root overrides must remain exactly the reviewed miniflare sharp/undici " +
+      "security override until miniflare pins patched dependencies.",
   );
 }
 for (const [name, version] of Object.entries(expectedCompanionToolchainPins)) {

@@ -169,7 +169,7 @@ import { requireReviewedSquirrelReleaseMode } from "./squirrel-updater.mjs";
  * @typedef {Readonly<{
  *   appDescription: string,
  *   appName: string,
- *   electronVersion: "43.7.7",
+ *   electronVersion: "43.8.3",
  *   releaseMode: "internal" | "signed",
  *   releaseVersion: string,
  *   packagerConfig: CompanionPackagerConfiguration,
@@ -352,8 +352,8 @@ async function prepareBrowserProcessSnapshots(
   /** @type {string} */
   electronVersion,
 ) {
-  if (electronVersion !== "43.7.7") {
-    throw new Error("Electron snapshot preparation requires exact 43.7.7.");
+  if (electronVersion !== "43.8.3") {
+    throw new Error("Electron snapshot preparation requires exact 43.8.3.");
   }
   const bundleRoot = resolve(resourcesAppPath, "..", "..");
   const sources = await findRuntimeSnapshots(bundleRoot);
@@ -1143,7 +1143,7 @@ export const packagerConfig = Object.freeze({
 export const packagingConfiguration = Object.freeze({
   appDescription: APP_DESCRIPTION,
   appName: "TokenMonster",
-  electronVersion: "43.7.7",
+  electronVersion: "43.8.3",
   releaseMode: RELEASE_MODE,
   releaseVersion: RELEASE_VERSION,
   packagerConfig,
