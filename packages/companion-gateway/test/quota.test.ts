@@ -82,6 +82,17 @@ describe("quota estimator", () => {
     expect(remainingQuotaPercent(600, 1_000)).toBe(40);
     expect(remainingQuotaPercent(1_001, 1_000)).toBe(0);
   });
+
+  it("handles remainingQuotaPercent edge cases correctly", () => {
+    expect(remainingQuotaPercent(0, 1_000)).toBe(100);
+    expect(remainingQuotaPercent(1_000, 0)).toBe(0);
+    const hugeBudget = Number.MAX_SAFE_INTEGER;
+    expect(remainingQuotaPercent(hugeBudget / 2, hugeBudget)).toBe(50);
+    expect(remainingQuotaPercent(hugeBudget, hugeBudget)).toBe(0);
+
+    // missing fields implicitly evaluate through NaN handling if undefined is passed to a number
+    expect(remainingQuotaPercent(undefined as any, 1000)).toBeNaN();
+  });
 });
 
 describe("quota plan store", () => {

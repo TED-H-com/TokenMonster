@@ -835,6 +835,24 @@ describe("strict and bounded upstream responses", () => {
     ).rejects.toMatchObject({ code: "incompatible-schema" });
   });
 
+
+  it("accepts edge case records like 0 tokens or huge numbers up to MAX_SAFE_INTEGER", async () => {
+    const maxTotal = Number.MAX_SAFE_INTEGER;
+    const adapter = createTokenTrackerAdapter({
+      fetch: injectedFetch(
+        modelBreakdownBody({
+          sources: [modelBreakdownSource("codex", maxTotal), modelBreakdownSource("claude", 0)]
+        })
+      )
+    });
+
+    const result = await adapter.getProviderTotals({
+      fromUtcDate: "2026-07-01",
+      toUtcDate: "2026-07-02"
+    });
+    expect(result.openai).toBe(maxTotal);
+    expect(result.anthropic).toBe(0);
+  });
   it("rejects model-breakdown schema drift and echoed range mismatches", async () => {
     const wrongDays = createTokenTrackerAdapter({
       fetch: injectedFetch(modelBreakdownBody({ days: 2 }))
