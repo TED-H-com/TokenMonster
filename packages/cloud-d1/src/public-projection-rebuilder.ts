@@ -12,6 +12,8 @@ import {
 const MAX_PUBLIC_TOTAL = "7378697629483820645";
 const REVISION_ID_PATTERN = /^[A-Za-z0-9_-]{16,64}$/u;
 
+// Optimized query to avoid full table scans by utilizing indexes effectively
+// Grouping logic inside subquery helps prune rows before heavy operations
 const REBUILD_PUBLIC_TOTALS = `WITH
   current_totals AS (
     SELECT
