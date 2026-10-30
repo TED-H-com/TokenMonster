@@ -136,3 +136,87 @@ test("Windows taskkill cleanup accepts only an unambiguous success", () => {
     false,
   );
 });
+
+import {
+  waitForProcessExit,
+  processGroupAlive,
+  waitForProcessGroupExit,
+} from "../process-control.mjs";
+
+test("waitForProcessExit returns true when process exits", async () => {
+  let aliveChecks = 0;
+  const originalAlive = process.kill;
+  try {
+    process.kill = (pid, signal) => {
+      aliveChecks++;
+      if (aliveChecks > 2) {
+        throw { code: "ESRCH" };
+      }
+      return true;
+    };
+    const result = await waitForProcessExit(12345, 500);
+    assert.equal(result, true);
+  } finally {
+    process.kill = originalAlive;
+  }
+});
+
+test("waitForProcessExit returns false when timeout reached", async () => {
+  const originalAlive = process.kill;
+  try {
+    process.kill = () => true;
+    const result = await waitForProcessExit(12345, 150);
+    assert.equal(result, false);
+  } finally {
+    process.kill = originalAlive;
+  }
+});
+
+test("processGroupAlive returns false for invalid pid", () => {
+  assert.equal(processGroupAlive(-1), false);
+});
+
+test("processGroupAlive handles kill EPERM correctly", () => {
+  const result = processGroupAlive(12345, (pid, signal) => {
+    throw { code: "EPERM" };
+  });
+  assert.equal(result, true);
+});
+
+test("processGroupAlive handles kill other error correctly", () => {
+  const result = processGroupAlive(12345, (pid, signal) => {
+    throw { code: "ESRCH" };
+  });
+  assert.equal(result, false);
+});
+
+test("waitForProcessGroupExit handles timely exit", async () => {
+  let aliveChecks = 0;
+  const result = await waitForProcessGroupExit(12345, 500, (pid) => {
+    aliveChecks++;
+    return aliveChecks <= 2;
+  });
+  assert.equal(result, true);
+});
+
+test("waitForProcessGroupExit handles timeout", async () => {
+  const result = await waitForProcessGroupExit(12345, 150, (pid) => true);
+  assert.equal(result, false);
+});
+
+test("stoppedRuntimeCanBeCleared works for posix", () => {
+  const result = stoppedRuntimeCanBeCleared(12345, [], {
+    platform: "linux",
+    alive: () => false,
+    groupAlive: () => false,
+  });
+  assert.equal(result, true);
+});
+
+test("stoppedRuntimeCanBeCleared returns false if pid invalid or alive", () => {
+  assert.equal(stoppedRuntimeCanBeCleared(-1, []), false);
+  assert.equal(stoppedRuntimeCanBeCleared(12345, [], {
+    platform: "linux",
+    alive: () => true
+  }), false);
+});
