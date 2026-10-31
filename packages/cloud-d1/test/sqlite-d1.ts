@@ -14,7 +14,9 @@ const MIGRATION_SQL = [
   "0002_compaction_audit.sql",
   "0003_lifecycle.sql",
   "0004_sidecar_contribution.sql",
-  "0005_recoverable_enrollment.sql"
+  "0005_recoverable_enrollment.sql",
+  "0006_optimize_projection.sql",
+  "0006_optimize_projection.sql"
 ]
   .map((name) =>
     readFileSync(new URL(`../migrations/${name}`, import.meta.url), "utf8")
