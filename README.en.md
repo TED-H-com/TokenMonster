@@ -91,6 +91,29 @@ Requires exactly Node.js `24.15.0` and npm `11.12.1`. The package declares both 
 
 TokenMonster is not on the npm registry yet.
 
+### CLI parameters
+
+- `--no-open`: Run without opening the browser (prints the bootstrap URL to the terminal).
+- `--no-character-downloads`: Disable character media pack downloads for the current run.
+- `--version`: Display the TokenMonster version and exit.
+- `--help`: Display the CLI help message and exit.
+
+### Programmatic API
+
+You can also use TokenMonster programmatically:
+
+```typescript
+import { runTokenMonster } from "tokenmonster";
+
+// Run TokenMonster with default options
+runTokenMonster().then((code) => process.exit(code));
+
+// Run without opening the browser
+runTokenMonster({
+  argv: ["--no-open"]
+});
+```
+
 ### From source
 
 Same requirements: the root `package.json` pins Node.js 24.15.0 and npm 11.12.1 with `engine-strict`, so `npm ci` rejects other versions.

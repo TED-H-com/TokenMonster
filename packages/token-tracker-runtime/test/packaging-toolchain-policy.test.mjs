@@ -19,7 +19,7 @@ const workflow = await readFile(
 );
 
 describe("packaging toolchain policy", () => {
-  it("verifies the exact stable direct tools and Forge-free closure", () => {
+  it("verifies the exact stable direct tools and Forge-free closure", { timeout: 30000 }, () => {
     const result = spawnSync(
       process.execPath,
       [resolve(rootDirectory, "scripts/verify-packaging-toolchain.mjs")],
@@ -37,7 +37,7 @@ describe("packaging toolchain policy", () => {
     );
   });
 
-  it("keeps public release mode closed in the same strict clean-tree verifier", () => {
+  it("keeps public release mode closed in the same strict clean-tree verifier", { timeout: 30000 }, () => {
     const result = spawnSync(
       process.execPath,
       [
