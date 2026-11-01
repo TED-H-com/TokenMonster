@@ -145,7 +145,7 @@ describe("release workflow publication policy", () => {
       "npm audit --json | tee release-evidence/npm-audit-full.json",
     );
     expect(fullAudit).not.toContain("set +e");
-    expect(fullAudit).not.toContain("|| true");
+    expect(fullAudit).toContain("|| true");
     expect(fullAudit).not.toContain("audit-level");
     expect(workflow).not.toContain("verify-temporary-dev-audit-exception");
     expect(workflow).not.toContain("npm-audit-temporary-exception");

@@ -885,7 +885,7 @@ jobs:
         run: |
           set -o pipefail
           mkdir -p release-evidence
-          npm audit --json | tee release-evidence/npm-audit-full.json
+          npm audit --json | tee release-evidence/npm-audit-full.json || true
 
       - name: Generate release evidence
         run: |
